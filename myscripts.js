@@ -1,5 +1,7 @@
-let playerChoice = prompt("Rock, paper, scissors?");
-playerChoice = playerChoice.toLowerCase();
+function playerChoice() {
+  let result = prompt("Rock, paper, scissors?");
+  return result;
+}
 
 function getComputerChoice() {
   const randomNumber = Math.random();
@@ -12,8 +14,6 @@ function getComputerChoice() {
     return 'scissors';
   }
 }
-
-const computerChoice = getComputerChoice();
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
@@ -29,6 +29,39 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-console.log(`Computer: ${computerChoice}`);
-console.log(`Human: ${playerChoice}`);
-console.log(playRound(playerChoice, computerChoice));
+function game() {
+  let playerWins = 0;
+  let computerWins = 0;
+
+  const playerSelections = [];
+  const computerSelections = [];
+
+  const rounds = 5;
+
+  for (let round = 1; round <= rounds; round++) {
+    const playerSelection = playerChoice();
+    const computerSelection = getComputerChoice();
+    playerSelections.push(playerSelection);
+    computerSelections.push(computerSelection);
+
+    const result = playRound(playerSelection, computerSelection);
+
+    console.log(`Round ${round}: You chose ${playerSelection}. Computer chose ${computerSelection}. Result: ${result}`);
+
+    if (result === 'You win!') {
+      playerWins++;
+    } else if (result === 'You lose.') {
+      computerWins++;
+    }
+  }
+
+  if (playerWins > computerWins) {
+    console.log('You win the game!');
+  } else if (playerWins < computerWins) {
+    console.log('Computer wins the game.');
+  } else {
+    console.log('It\'s a tie game.');
+  }
+}
+
+game();
