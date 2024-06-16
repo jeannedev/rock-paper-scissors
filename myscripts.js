@@ -40,7 +40,7 @@ function showResult(result) {
   resultDisplay.textContent = result;
 }
 
-// Event listeners for buttons
+
 document.getElementById('rockBtn').addEventListener('click', function () {
   playGame('rock');
 });
